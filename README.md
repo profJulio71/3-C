@@ -1,1 +1,1 @@
-# Resumo dos conteúdos e conceitos fundamentais apresentados no 1º bimestre da disciplina Banco de Dados, ministrada no Chico Triste.
+# Resumo dos conteúdos e conceitos fundamentais apresentados na disciplina Banco de Dados, ministrada no Chico Triste.
