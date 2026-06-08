@@ -1,0 +1,7 @@
+"""
+Crie duas variáveis do tipo string, uma contendo “Olá” e outra contendo
+“Mundo”. Concatene-as e imprima o resultado.
+"""
+
+texto = "Python"
+print(texto[2])
