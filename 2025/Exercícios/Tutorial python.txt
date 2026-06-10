@@ -1,0 +1,3 @@
+Copie o endereço abaixo e cole no navegador.
+
+https://docs.python.org/pt-br/3.13/tutorial/index.html
