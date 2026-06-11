@@ -1,0 +1,135 @@
+1. Qual é o nome do primeiro produto vendido?
+
+SELECT TOP 1
+    p.ProductName,
+    s.SaleDate
+FROM Sales s
+INNER JOIN Products p
+    ON s.ProductID = p.ProductID
+ORDER BY s.SaleDate ASC;
+
+*******************
+-- Seleciona apenas o primeiro registro após a ordenação
+SELECT TOP 1
+
+    -- Retorna o nome do produto
+    p.ProductName,
+
+    -- Retorna a data da venda
+    s.SaleDate
+
+-- Tabela de vendas (apelidada de "s")
+FROM Sales s
+
+-- Faz a junção entre vendas e produtos
+-- para obter as informações do produto vendido
+INNER JOIN Products p
+    ON s.ProductID = p.ProductID
+
+-- Ordena as vendas da mais antiga para a mais recente
+ORDER BY s.SaleDate ASC;
+
+
+
+2. Qual é o nome do produto que mais foi vendido no dia 10 de janeiro de 2010?
+
+SELECT TOP 1
+    p.ProductName,
+    SUM(s.Quantity) AS TotalVendido
+FROM Sales s
+INNER JOIN Products p
+    ON s.ProductID = p.ProductID
+WHERE s.SaleDate = '2010-01-10'
+GROUP BY p.ProductName
+ORDER BY TotalVendido DESC;
+
+***********************************************
+
+-- Seleciona apenas o produto mais vendido da consulta
+SELECT TOP 1
+
+    -- Retorna o nome do produto
+    p.ProductName,
+
+    -- Soma a quantidade vendida do produto
+    -- e atribui o nome "TotalVendido" ao resultado
+    SUM(s.Quantity) AS TotalVendido
+
+-- Tabela de vendas (apelidada de "s")
+FROM Sales s
+
+-- Faz a junção entre vendas e produtos
+-- para obter o nome do produto vendido
+INNER JOIN Products p
+    ON s.ProductID = p.ProductID
+
+-- Filtra apenas as vendas realizadas
+-- no dia 10 de janeiro de 2010
+WHERE s.SaleDate = '2010-01-10'
+
+-- Agrupa os registros por produto
+-- para calcular o total vendido de cada um
+GROUP BY p.ProductName
+
+-- Ordena do maior total vendido para o menor
+ORDER BY TotalVendido DESC;
+
+
+
+3. Qual é a cidade da loja que vendeu a maior quantidade de um produto da categoria rural de uma vez só?
+
+SELECT TOP 1
+    st.City,
+    p.ProductName,
+    c.CategoryName,
+    s.Quantity
+FROM Sales s
+INNER JOIN Products p
+    ON s.ProductID = p.ProductID
+INNER JOIN Categories c
+    ON p.CategoryID = c.CategoryID
+INNER JOIN Stores st
+    ON s.StoreID = st.StoreID
+WHERE c.CategoryName = 'Rural'
+ORDER BY s.Quantity DESC;
+
+
+*************************************
+-- Seleciona apenas o primeiro registro após a ordenação
+SELECT TOP 1
+
+    -- Retorna a cidade da loja
+    st.City,
+
+    -- Retorna o nome do produto vendido
+    p.ProductName,
+
+    -- Retorna o nome da categoria do produto
+    c.CategoryName,
+
+    -- Retorna a quantidade vendida na transação
+    s.Quantity
+
+-- Tabela de vendas (apelidada de "s")
+FROM Sales s
+
+-- Faz a junção entre vendas e produtos
+-- para obter informações do produto vendido
+INNER JOIN Products p
+    ON s.ProductID = p.ProductID
+
+-- Faz a junção entre produtos e categorias
+-- para identificar a categoria do produto
+INNER JOIN Categories c
+    ON p.CategoryID = c.CategoryID
+
+-- Faz a junção entre vendas e lojas
+-- para identificar a cidade da loja
+INNER JOIN Stores st
+    ON s.StoreID = st.StoreID
+
+-- Filtra apenas produtos da categoria "Rural"
+WHERE c.CategoryName = 'Rural'
+
+-- Ordena da maior quantidade vendida para a menor
+ORDER BY s.Quantity DESC;
